@@ -13,8 +13,10 @@ from uuid import uuid4
 
 
 with DAG(
-    "breast_cancer_logistic_regression",
-    schedule=timedelta(minutes=1),
+    dag_id="breast_cancer_logistic_regression",
+    schedule=timedelta(days=1),
+    start_date=dt.datetime.now(),
+    catchup=False,
     tags=["regression"],
 ) as dag:
     cur_dt: str = dt.datetime.strftime(dt.datetime.now(), "%H_%M_%d_%m_%Y")
