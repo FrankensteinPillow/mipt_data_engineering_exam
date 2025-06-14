@@ -1,6 +1,5 @@
 import json
 import pickle
-import pprint
 
 import numpy as np
 from sklearn.linear_model import LogisticRegression
@@ -27,20 +26,23 @@ def model_train(base_path: str):
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
 
-    results = {
+    metrics = {
         "accuracy": accuracy_score(y_test, y_pred),
         "recall": recall_score(y_test, y_pred),
         "f1_score": f1_score(y_test, y_pred),
         "precision": precision_score(y_test, y_pred),
     }
-    pprint.pprint(results)
+    logger.info(f"metrics: {metrics}")
 
     np.save(base_path.joinpath("y_pred.npy"), y_pred)
+    logger.info(f"prediction saved to {base_path.joinpath('y_pred.npy')}")
 
     with open(base_path.joinpath("metrics.json"), "w") as f:
-        json.dump(results, f)
+        json.dump(metrics, f)
+    logger.info(f"metrics saved to {base_path.joinpath('metrics.json')}")
 
     with open(base_path.joinpath("logistic_regression.pickle"), "wb") as f:
         pickle.dump(model, f)
-
-    logger.info("SUPER PUPA AND LUPA!!!!!")
+    logger.info(
+        f"model saved to {base_path.joinpath('logistic_regression.pickle')}"
+    )
