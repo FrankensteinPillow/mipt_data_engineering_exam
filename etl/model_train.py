@@ -11,9 +11,13 @@ from sklearn.metrics import (
     recall_score,
 )
 from pathlib import Path
+from logging import getLogger
+
+logger = getLogger(__name__)
 
 
-def model_train(base_path: Path):
+def model_train(base_path: str):
+    base_path = Path(base_path)
     X_train: np.array = np.load(base_path.joinpath("X_train.npy"))
     y_train: np.array = np.load(base_path.joinpath("y_train.npy"))
     X_test: np.array = np.load(base_path.joinpath("X_test.npy"))
@@ -38,3 +42,5 @@ def model_train(base_path: Path):
 
     with open(base_path.joinpath("logistic_regression.pickle"), "wb") as f:
         pickle.dump(model, f)
+
+    logger.info("SUPER PUPA AND LUPA!!!!!")

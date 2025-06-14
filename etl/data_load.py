@@ -2,7 +2,9 @@ from sklearn.datasets import load_breast_cancer
 from pathlib import Path
 
 
-def load_data(base_path: Path) -> None:
+def load_data(base_path: str) -> None:
+    base_path = Path(base_path)
+    base_path.mkdir(parents=True, exist_ok=True)
     data = load_breast_cancer(return_X_y=False, as_frame=True)
     dataset_file_path = base_path.joinpath(data["filename"])
     data["frame"].to_csv(dataset_file_path)

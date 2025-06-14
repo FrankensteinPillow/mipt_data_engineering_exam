@@ -19,13 +19,13 @@ def main():
     result_dir.mkdir(parents=True, exist_ok=True)
 
     # 1.
-    load_data(result_dir)
+    load_data(str(result_dir))
     # 2.
-    show_statistics(result_dir)
+    show_statistics(str(result_dir))
     # 3.
-    data_preprocessing(result_dir)
+    data_preprocessing(str(result_dir))
     # 4.
-    model_train(result_dir)
+    model_train(str(result_dir))
 
 
 if __name__ == "__main__":

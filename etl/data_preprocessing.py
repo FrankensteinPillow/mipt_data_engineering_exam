@@ -6,7 +6,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 
-def data_preprocessing(base_path: Path):
+def data_preprocessing(base_path: str):
+    base_path = Path(base_path)
     data: pd.DataFrame = pd.read_csv(
         base_path.joinpath("breast_cancer.csv"), sep=","
     )
