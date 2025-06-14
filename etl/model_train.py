@@ -30,11 +30,11 @@ def model_train(base_path: Path):
         "precision": precision_score(y_test, y_pred),
     }
     pprint.pprint(results)
-    # сохраним результаты предсказаний
-    np.savetxt(base_path.joinpath("y_pred.csv"), y_pred, delimiter=",")
-    # сохраним результаты метрик полученных на тестовой выборке
+
+    np.save(base_path.joinpath("y_pred.npy"), y_pred)
+
     with open(base_path.joinpath("metrics.json"), "w") as f:
         json.dump(results, f)
-    # сохраним саму модель как pickle файл
+
     with open(base_path.joinpath("logistic_regression.pickle"), "wb") as f:
         pickle.dump(model, f)
