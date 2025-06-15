@@ -9,3 +9,7 @@ run_airflow:
 
 run_local:
 	python pipeline.py
+
+install:
+	python -m pip install -r requirements.txt \
+	--constraint "https://raw.githubusercontent.com/apache/airflow/constraints-3.0.2/constraints-3.9.txt"
