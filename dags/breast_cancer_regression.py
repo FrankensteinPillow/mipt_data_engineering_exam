@@ -15,7 +15,7 @@ from uuid import uuid4
 with DAG(
     dag_id="breast_cancer_logistic_regression",
     schedule=timedelta(days=1),
-    start_date=dt.datetime.now(),
+    start_date=dt.datetime(2025, 1, 1),
     catchup=False,
     tags=["regression"],
 ) as dag:
