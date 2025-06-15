@@ -27,6 +27,7 @@ with DAG(
         python_callable=load_data,
         task_id="load_data",
         op_args=(run_results_path,),
+        retry_delay=timedelta(seconds=15),
     )
 
     t2 = PythonOperator(
